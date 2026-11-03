@@ -1,0 +1,250 @@
+/* =====================================================================
+   ZayyStore — "NEON GLASS" ✨ (lapisan tampilan paling akhir)
+   Dimuat SETELAH style.css, theme.css, halloween.css. Hanya mengubah tampilan:
+   layout/bentuk halaman tetap sama. Hapus <link> cool.css + <script> cool.js
+   di index.html untuk kembali ke tampilan sebelumnya.
+   ===================================================================== */
+:root{--c-or:#ff7a1a;--c-or2:#ffb347;--c-vi:#a855f7;--c-pk:#ff4fa3;--c-glass:#160a2acc;--c-line:#ffffff1c;--c-text:#f4ecff;--c-mute:#b4a3d1}
+html{scroll-behavior:smooth;background:#07030f}
+body{color:var(--c-text);background:
+  radial-gradient(1100px 600px at 12% -8%,#6d28d955,transparent 65%),
+  radial-gradient(900px 560px at 92% 8%,#ff4fa326,transparent 62%),
+  radial-gradient(900px 520px at 50% 108%,#ff7a1a30,transparent 65%),
+  linear-gradient(#0d0520,#08030f 60%,#05020a);background-attachment:fixed}
+::selection{background:var(--c-or);color:#1a0b00}
+::-webkit-scrollbar{width:11px}::-webkit-scrollbar-track{background:#08030f}::-webkit-scrollbar-thumb{background:linear-gradient(var(--c-or),var(--c-vi));border-radius:8px;border:2px solid #08030f}
+
+/* ---- aurora bergerak di belakang semua ---- */
+.cl-aurora{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.cl-aurora i{position:absolute;width:52vmax;height:52vmax;border-radius:50%;filter:blur(90px);opacity:.34;mix-blend-mode:screen;will-change:transform;animation:clDrift 26s ease-in-out infinite alternate}
+.cl-aurora i:nth-child(1){left:-14vmax;top:-10vmax;background:#7c3aed}
+.cl-aurora i:nth-child(2){right:-18vmax;top:14vh;background:#ff4fa3;opacity:.2;animation-duration:34s;animation-delay:-8s}
+.cl-aurora i:nth-child(3){left:22vw;bottom:-26vmax;background:#ff7a1a;opacity:.26;animation-duration:30s;animation-delay:-14s}
+@keyframes clDrift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(7vw,5vh) scale(1.15)}100%{transform:translate(-5vw,10vh) scale(.92)}}
+.cl-grid{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000,transparent 75%)}
+.cl-progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:10000;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--c-vi),var(--c-pk),var(--c-or),var(--c-or2));box-shadow:0 0 14px #ff7a1a}
+.cl-spark{position:fixed;z-index:10001;width:6px;height:6px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#ffe2a8,#ff7a1a 60%,transparent 72%);animation:clSpark .8s ease-out forwards}
+@keyframes clSpark{to{transform:translate(var(--dx),var(--dy)) scale(.1);opacity:0}}
+
+/* ---- header kaca ---- */
+.sv-header{background:linear-gradient(180deg,#1b0d33d9,#12082699);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border:1px solid var(--c-line);border-radius:20px;box-shadow:0 18px 44px #0009,inset 0 1px 0 #ffffff1f;overflow:visible;transition:.3s}
+.sv-header:after{content:"";position:absolute;left:8%;right:8%;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--c-or),var(--c-vi),var(--c-or),transparent);filter:drop-shadow(0 0 6px var(--c-or));opacity:.9}
+.brand-mark{background:linear-gradient(145deg,#ffb347,#ff5a00 60%,#c2185b);box-shadow:0 0 0 1px #ffffff40 inset,0 6px 22px #ff7a1a88;animation:clPulse 3.4s ease-in-out infinite}
+@keyframes clPulse{50%{box-shadow:0 0 0 1px #ffffff40 inset,0 6px 34px #ff7a1add,0 0 0 6px #ff7a1a22}}
+.sv-brand b{background:linear-gradient(90deg,#fff,#ffd9a8 60%,#ffb347);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;letter-spacing:1.4px}
+.sv-nav a{position:relative;color:#e6dbf8;transition:.25s}
+.sv-nav a:after{content:"";position:absolute;left:18px;right:18px;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--c-or),var(--c-pk));transform:scaleX(0);transition:transform .3s}
+.sv-nav a:hover,.sv-nav a.active{background:#ffffff12;color:#fff}.sv-nav a:hover:after,.sv-nav a.active:after{transform:scaleX(1)}
+.sv-actions .icon-btn,.sv-actions .cart-btn,.sv-burger{background:#ffffff12;border:1px solid var(--c-line);transition:.25s}
+.sv-actions .icon-btn:hover,.sv-actions .cart-btn:hover{background:#ffffff22;border-color:#ff7a1a88;box-shadow:0 0 18px #ff7a1a44;transform:translateY(-1px)}
+.cart-btn span{background:linear-gradient(135deg,#ff4fa3,#ff7a1a);color:#fff;box-shadow:0 0 12px #ff4fa3aa}
+
+/* ---- tombol neon + kilau ---- */
+.primary-btn,.login-btn,.sv-cta,.add-cart.sv-buy{position:relative;overflow:hidden;isolation:isolate;border:0;background:linear-gradient(110deg,#ff5a00,#ff9a3c 55%,#ffb347);color:#1d0a00;font-weight:800;letter-spacing:.3px;box-shadow:0 4px 0 #9c3a00,0 10px 26px #ff7a1a55;transition:transform .18s,box-shadow .25s,filter .25s}
+.primary-btn:after,.login-btn:after,.sv-cta:after,.add-cart.sv-buy:after{content:"";position:absolute;z-index:-1;top:0;bottom:0;width:38%;left:-60%;background:linear-gradient(100deg,transparent,#ffffffa8,transparent);transform:skewX(-20deg);transition:left .65s}
+.primary-btn:hover:after,.login-btn:hover:after,.sv-cta:hover:after,.add-cart.sv-buy:hover:after{left:130%}
+.primary-btn:hover,.login-btn:hover,.sv-cta:hover,.add-cart.sv-buy:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 6px 0 #9c3a00,0 14px 38px #ff7a1a99}
+.primary-btn:active,.login-btn:active,.sv-cta:active,.add-cart.sv-buy:active{transform:translateY(2px);box-shadow:0 1px 0 #9c3a00,0 4px 14px #ff7a1a66}
+.sv-hero .sv-cta{animation:clCta 2.6s ease-in-out infinite}
+@keyframes clCta{50%{box-shadow:0 4px 0 #9c3a00,0 10px 50px #ff7a1add,0 0 0 8px #ff7a1a1c}}
+.cl-ripple{position:absolute;z-index:-1;border-radius:50%;background:#ffffff77;transform:scale(0);animation:clRip .6s ease-out forwards;pointer-events:none}
+@keyframes clRip{to{transform:scale(3.4);opacity:0}}
+
+/* ---- hero ---- */
+.sv-hero{border-bottom:1px solid #ffffff12}
+.sv-hero-bg{transition:transform .25s ease-out}
+.sv-hero-bg:after{background:linear-gradient(90deg,#08030ff0,#14062c99 52%,#2a124533),linear-gradient(0deg,#08030f 0%,transparent 38%),radial-gradient(700px 360px at 82% 18%,#ff7a1a30,transparent 70%)!important}
+.sv-hero h1{font-weight:800;-webkit-text-stroke:0;paint-order:normal;color:#fff;letter-spacing:.2px;text-shadow:0 0 38px #a855f777,0 8px 30px #000b}
+.sv-hero h1 .hw-or{background:linear-gradient(100deg,#ffb347,#ff5a00 40%,#ff4fa3 75%,#ffb347);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:clGrad 5s linear infinite;filter:drop-shadow(0 0 22px #ff7a1a99)}
+@keyframes clGrad{to{background-position:-220% 0}}
+.sv-hero p{color:#e4d8f7;font-weight:500}
+.sv-hero .sv-stats div{background:linear-gradient(160deg,#ffffff1c,#ffffff08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #ffffff2b;border-radius:16px;box-shadow:0 12px 34px #0008,inset 0 1px 0 #ffffff33,0 0 26px #a855f722;transition:.3s}
+.sv-hero .sv-stats div:hover{border-color:#ff7a1aaa;box-shadow:0 14px 40px #000a,0 0 34px #ff7a1a55}
+.sv-hero .sv-stats b{background:linear-gradient(180deg,#fff,#ffcf8a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sv-hero .sv-stats small{color:#d6c7ef}
+.sv-hero:before{box-shadow:0 0 70px 18px #ffb34788,0 0 190px 80px #ff7a1a33!important}
+.sv-bits i{border-radius:50%;filter:blur(.3px)}
+
+/* ---- promo ---- */
+.sv-promo{position:relative;overflow:hidden;background:linear-gradient(100deg,#ff5a00,#ffa23c 40%,#ff4fa3 80%,#ff7a1a);background-size:240% 100%;border:1px solid #ffffff55;border-radius:16px;color:#240a00;font-weight:700;box-shadow:0 12px 40px #ff7a1a40,inset 0 1px 0 #ffffff66}
+.sv-promo:after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,#ffffff77,transparent);transform:skewX(-20deg);animation:clShine 4.2s ease-in-out infinite}
+@keyframes clShine{0%,60%{left:-40%}100%{left:130%}}
+.sv-promo strong{background:#12061f;color:#ffd9a8;box-shadow:0 0 16px #0008;letter-spacing:1px}
+
+/* ---- judul seksi ---- */
+.sv-pill{background:linear-gradient(135deg,#ff7a1a22,#a855f722);border:1px solid #ff7a1a77;color:#ffd0a0;box-shadow:0 0 24px #ff7a1a33,inset 0 1px 0 #ffffff22;backdrop-filter:blur(8px);letter-spacing:2px}
+.sv-head h2{font-family:Creepster,"Lilita One",Poppins;font-size:clamp(34px,4.4vw,52px);letter-spacing:2px;background:linear-gradient(90deg,#fff,#ffe3bf 50%,#ffb347);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 4px 0 #3b0f66) drop-shadow(0 0 22px #ff7a1a55);position:relative;width:fit-content;max-width:100%}
+.sv-head h2:after{content:"";display:block;height:4px;width:64%;margin-top:6px;border-radius:4px;background:linear-gradient(90deg,var(--c-or),var(--c-pk),transparent);box-shadow:0 0 14px var(--c-or)}
+
+/* ---- kartu produk kaca + border neon + tilt ---- */
+.sv-section .product-grid{perspective:1200px}
+.sv-card.product-card{position:relative;background:linear-gradient(165deg,#241242e6,#120826f2);border:1px solid var(--c-line);border-radius:20px;box-shadow:0 18px 44px #000a,inset 0 1px 0 #ffffff1c;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0));transition:transform .25s ease-out,box-shadow .3s,border-color .3s;overflow:hidden}
+.sv-card.product-card:hover{--ty:-8px;border-color:#ff7a1a88;box-shadow:0 26px 56px #000c,0 0 0 1px #ff7a1a55,0 0 44px #ff7a1a40}
+.sv-card.product-card:before{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),#ffffff1c,transparent 45%);opacity:0;transition:opacity .3s}
+.sv-card.product-card:hover:before{opacity:1}
+.sv-img{border-bottom:1px solid #ffffff14}
+.sv-img:after{content:"";position:absolute;z-index:3;top:0;bottom:0;width:36%;left:-60%;background:linear-gradient(100deg,transparent,#ffffff40,transparent);transform:skewX(-20deg);pointer-events:none;transition:left .8s}
+.sv-card:hover .sv-img:after{left:140%}
+.g-account{background:radial-gradient(circle at 30% 20%,#ffb34766,transparent 55%),linear-gradient(160deg,#ff7a1a,#b3290c 55%,#3a0f6e)}
+.sv-art b{font-family:Creepster,"Lilita One",Poppins;letter-spacing:3px;color:#ffd9a0;-webkit-text-stroke:0;text-shadow:0 0 24px #ff7a1a,0 4px 0 #2a0a4a;animation:clFloat 4.5s ease-in-out infinite}
+@keyframes clFloat{50%{transform:translateY(-8px)}}
+.sv-photo{border-radius:12px;box-shadow:0 16px 34px #000a,0 0 0 1px #ffffff22}
+.sv-tag{background:linear-gradient(135deg,#ffcf5a,#ff7a1a);color:#2a1000}
+.sv-off{background:linear-gradient(135deg,#a855f7,#ff4fa3);box-shadow:0 0 16px #ff4fa388}
+.sv-body{position:relative;z-index:2}
+.sv-body h3{color:#fff;font-weight:700}.sv-body p{color:var(--c-mute)}
+.sv-meta{color:var(--c-mute)}.sv-rate{color:#ffd66b}.sv-sep{color:#ffffff30}
+.sv-price strong{background:linear-gradient(90deg,#fff,#ffcf8a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;filter:drop-shadow(0 0 14px #ff7a1a55)}
+
+/* ---- cara belanja ---- */
+.sv-section .how-card,.newsletter{background:linear-gradient(165deg,#241242cc,#120826e6);border:1px solid var(--c-line);backdrop-filter:blur(12px);box-shadow:0 18px 44px #0009,inset 0 1px 0 #ffffff1a;transition:.3s}
+.sv-section .how-card{position:relative;overflow:hidden}
+.sv-section .how-card:hover{transform:translateY(-6px);border-color:#ff7a1a88;box-shadow:0 22px 50px #000b,0 0 34px #ff7a1a40}
+.how-card i{background:linear-gradient(145deg,#ffb347,#ff5a00 60%,#c2185b);color:#fff;box-shadow:0 8px 22px #ff7a1a66,inset 0 1px 0 #ffffff66;text-shadow:0 2px 0 #0004}
+.how-card b{color:#fff}.how-card small{color:var(--c-mute)}
+.how-card:after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,#a855f733,transparent 70%);pointer-events:none}
+.newsletter h3{color:#fff}.newsletter p{color:var(--c-mute)}
+.news-icon{background:linear-gradient(145deg,#ff7a1a33,#a855f733);color:#ffcf8a;border:1px solid #ff7a1a55;box-shadow:0 0 22px #ff7a1a33}
+.newsletter input,.modal input{background:#0d0618b3;border:1px solid #ffffff26;color:#fff;transition:.25s}
+.newsletter input::placeholder,.modal input::placeholder{color:#7d6fa0}
+.newsletter input:focus,.modal input:focus{outline:0;border-color:var(--c-or);box-shadow:0 0 0 3px #ff7a1a33,0 0 24px #ff7a1a33}
+
+/* ---- footer ---- */
+.sv-footer{position:relative;background:linear-gradient(180deg,#140826f2,#07030f);border:1px solid var(--c-line);border-bottom:0;color:#c4b5df;box-shadow:0 -20px 60px #a855f714}
+.sv-footer:before{content:"";position:absolute;left:6%;right:6%;top:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--c-or),var(--c-pk),var(--c-vi),transparent);filter:drop-shadow(0 0 8px var(--c-or))}
+.sv-footer h4{color:#ffcf8a;letter-spacing:.5px}.sv-footer a:not(.sv-brand){transition:.25s}.sv-footer a:not(.sv-brand):hover{color:#fff;transform:translateX(4px);text-shadow:0 0 14px #ff7a1a}
+.sv-footer .payment-pills span{background:#ffffff0f;border:1px solid #ffffff22;color:#ece2fb;transition:.25s}.sv-footer .payment-pills span:hover{border-color:#ff7a1a99;box-shadow:0 0 14px #ff7a1a44}
+.sv-foot-bottom{border-color:#ffffff14;color:#9d8dbd}
+.wa-float{background:linear-gradient(135deg,#25d366,#0fa958);border-color:#ffffffd9;animation:clWa 2.8s ease-in-out infinite}
+@keyframes clWa{50%{box-shadow:0 0 0 3px #1fbf5b,0 12px 26px #0006,0 0 0 12px #1fbf5b22}}
+
+/* ---- reveal saat scroll ---- */
+.cl-rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--dl,0s)}
+.cl-rv.in{opacity:1;transform:none}
+.sv-card.product-card.cl-rv{transition:opacity .8s cubic-bezier(.2,.8,.2,1) var(--dl,0s),transform .25s ease-out,box-shadow .3s,border-color .3s}
+.sv-card.product-card.cl-rv:not(.in){opacity:0;--ty:34px}
+
+/* ---- layar pembuka ---- */
+.intro-bg{filter:blur(14px) brightness(.55) saturate(1.2)}
+.intro:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+.intro-shade{background:radial-gradient(ellipse at center,#12061f33,#07030ff0 88%),radial-gradient(500px 320px at 50% 55%,#ff7a1a22,transparent)}
+.intro-bar{border-color:#ffffff33;background:#0d0618b3;border-radius:8px;box-shadow:0 0 30px #ff7a1a44}
+.intro-bar i{background:linear-gradient(90deg,#a855f7,#ff4fa3,#ff7a1a,#ffb347);box-shadow:0 0 18px #ff7a1a}
+.intro-skip{background:#ffffff14;border:1px solid #ffffff33;color:#fff;transition:.25s}.intro-skip:hover{background:#ff7a1a33;border-color:#ff7a1a}
+.sv-hero-copy h1,.sv-hero-copy p{position:relative}
+
+/* ---- keranjang, modal, checkout (mode gelap kaca) ---- */
+/* ---------- toast, keranjang, modal ---------- */
+.toast{background:#2a1647;border:1px solid #ff7a1a77;color:#ffe9cf;box-shadow:0 10px 36px #000a,0 0 24px #ff7a1a33}
+.overlay,.modal-overlay{background:#07030dcc;backdrop-filter:blur(5px)}
+.cart-drawer,.modal{background:linear-gradient(180deg,#1b1029,#130b21);color:#f1e9ff;border-left:1px solid #ff7a1a33}
+.modal{border:1px solid #ff7a1a40;box-shadow:0 30px 90px #000,0 0 50px #ff7a1a22}
+.drawer-head{border-color:#2f2147}
+.close-btn{background:#2a1a47;color:#e6d6ff}.close-btn:hover{background:#ff7a1a;color:#1a0b00}
+.empty-cart{color:#8d7fb0}.empty-cart b{color:#fff}
+.cart-row{border-color:#2f2147}
+.cart-product-icon{background:#2d1750;color:#ffa24d}
+.cart-row-info b{color:#fff}.cart-row-info small{color:#ffa24d}
+.cart-line-total{color:#ffa24d}
+.qty{border-color:#3a2760}.qty button{background:#2a1647;color:#ffa24d}.qty button:hover{background:#ff7a1a;color:#1a0b00}.qty span{color:#fff}
+.cart-total{border-color:#2f2147}
+.cart-total>small{color:#8d7fb0}
+.coupon input{background:#120a1f;border-color:#ff7a1a66;color:#fff}
+.coupon button{background:linear-gradient(135deg,#7a2be0,#9b4dff);color:#fff}
+.sum-row{color:#b9aad8}.sum-row b{color:#fff}.sum-row.total{border-color:#2f2147;color:#fff}.sum-row.total strong{color:#ffa24d;text-shadow:0 0 16px #ff7a1a66}
+.sum-row.discount,.sum-row.discount b{color:var(--ok)}
+.modal h2{color:#fff}.modal h2 span{color:#ff8a2a}
+.modal p,.demo-note,.modal label{color:#b9aad8}
+.modal label{color:#d8ccf0}
+.modal-logo{background:linear-gradient(145deg,#ff9a3d,#d94f00);color:#1a0b00}
+
+/* ---------- checkout ---------- */
+.co-steps{color:#7d6fa0}.co-steps i{background:#2a1a47;color:#c9bbe6}
+.co-steps li:not(:last-child):after{background:#33214f}
+.co-steps li.on{color:#ffa24d}.co-steps li.on i{background:#ff7a1a;color:#1a0b00;box-shadow:0 0 0 4px #ff7a1a33}
+.co-steps li.ok{color:var(--ok)}.co-steps li.ok i{background:var(--ok);color:#04180f}
+.co-summary{background:#140b22;border-color:#33214f}
+.co-line{color:#d8ccf0}.co-line em{color:#8d7fb0}.co-line.total{border-color:#3a2760;color:#fff}.co-line.total strong{color:#ffa24d}.co-line.disc{color:var(--ok)}
+.co-skel{background:linear-gradient(90deg,#1f1333 25%,#2a1a47 50%,#1f1333 75%);background-size:200% 100%}
+.checkout-modal label small{color:#8d7fb0}
+.form-error{background:#3a0f1c;border-color:#7a1f35;color:#ff9aae}
+/* QR WAJIB tetap putih agar bisa dipindai */
+.qr-frame{background:#fff;border-color:#ff7a1a;box-shadow:0 0 40px #ff7a1a55,0 14px 34px #000a}
+.qr-frame:before,.qr-frame:after{border-color:#ff7a1a}
+.qr-loading{background:#f6f1ff;color:#4a3a6a}
+.qr-brand b{color:#fff}.qr-brand small{color:#a99cc7}
+.pay-amount{background:linear-gradient(110deg,#6a1fb8,#c2410c);box-shadow:0 10px 30px #7a1f6a66}
+.pay-note{background:#3a2406;border-color:#7a4a0a;color:#ffd48a}
+.pay-timer{color:#b9aad8}.pay-timer b{color:#fff}.pay-timer b.low{color:#ff6b7f}
+.pay-steps{color:#c9bbe6}
+.pay-status{background:#221539;color:#ffcf9a}
+.spinner{border-color:#ff7a1a44;border-top-color:#ff7a1a}
+.pay-meta{color:#8d7fb0}.pay-meta b{color:#d8ccf0}
+.sandbox-box{background:#1d1230;border-color:#9b4dff88;color:#d4b8ff}
+.link-btn{color:#8d7fb0}
+.done-sub{color:#b9aad8}
+.delivery{background:#140b22;border-color:#33214f}.delivery.manual{background:#2a1a06;border-color:#7a4a0a}
+.d-head{color:#fff}.delivery p{color:#c9bbe6}
+.code{background:#221539}.code code{color:#ffd9a0}.code button{background:linear-gradient(135deg,#ff6a00,#ffa24d);color:#1a0b00}
+.order-row{border-color:#33214f;background:#140b22}.order-row b{color:#fff}.order-row small{color:#8d7fb0}
+.order-row button{background:#2a1647;color:#ffa24d}
+.badge.ok{background:#0f3a2a;color:#3ddc97}.badge.wait{background:#3a2406;color:#ffc23d}.badge.off{background:#221539;color:#8d7fb0}
+.link-btn:hover{color:#ffa24d}
+
+
+.cart-drawer,.modal{background:linear-gradient(180deg,#1d0f36f2,#0f0720f7);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid #ffffff1f;box-shadow:0 30px 90px #000,0 0 60px #a855f722,inset 0 1px 0 #ffffff1a}
+.modal{border-radius:22px}
+.overlay,.modal-overlay{background:#05020bcc;backdrop-filter:blur(7px)}
+.modal-logo{background:linear-gradient(145deg,#ffb347,#ff5a00 60%,#c2185b);color:#fff;box-shadow:0 8px 26px #ff7a1a77}
+.section-kicker{color:#ff9a3d;text-shadow:0 0 14px #ff7a1a77;letter-spacing:2px}
+.drawer-head h2,.modal h2{color:#fff}.drawer-head h2 span,.modal h2 span{background:linear-gradient(90deg,#ffb347,#ff4fa3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cart-row .cart-product-icon,.cart-product-icon{background:linear-gradient(145deg,#ff7a1a33,#a855f733);color:#ffcf8a}
+.coupon button,.coupon input{border-color:#ffffff26}
+.coupon button{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}
+.coupon input{background:#0d0618b3;color:#fff}
+.close-btn{background:#ffffff14;color:#fff;transition:.25s}.close-btn:hover{background:#ff7a1a;color:#1a0b00;transform:rotate(90deg)}
+.secondary-btn{background:#ffffff12;border:1px solid #a855f7aa;color:#eadcff}
+.auth-err{color:#ff8fa8}
+.toast{background:linear-gradient(135deg,#2a1247f2,#14072bf2);border:1px solid #ff7a1a88;color:#fff;box-shadow:0 16px 44px #000c,0 0 30px #ff7a1a44;backdrop-filter:blur(12px)}
+.orders-btn{color:#ffcf8a}.orders-btn:hover{background:#ffffff14}
+/* QR wajib tetap putih agar bisa discan */
+.qr-frame{background:#fff!important}
+.qr-frame img{background:#fff}
+.qr-loading{background:#fff;color:#4a3a6a}
+
+@media(hover:none){.sv-card.product-card{transform:none}.cl-spark{display:none}}
+@media(max-width:900px){.sv-header{border-radius:18px}.cl-grid{display:none}.cl-aurora i{filter:blur(70px)}}
+@media(max-width:700px){.sv-head h2{font-size:34px}.sv-section .how-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.cl-aurora i,.brand-mark,.sv-hero .sv-cta,.sv-hero h1 .hw-or,.sv-promo:after,.sv-art b,.wa-float,.cl-spark{animation:none!important}.cl-rv{opacity:1;transform:none;transition:none}.sv-card.product-card{transform:none!important}}
+
+/* ---- paket bundling ---- */
+.sv-bundle{position:absolute;left:0;top:0;z-index:3;background:linear-gradient(135deg,#ffcf5a,#ff7a1a);color:#2a1000;font-size:10.5px;font-weight:800;letter-spacing:.5px;padding:6px 12px;border-radius:0 0 12px 0;box-shadow:0 0 18px #ffb34788}
+.sv-inc{list-style:none;margin:10px 0 2px;padding:10px 12px;display:grid;gap:5px;border:1px dashed #ff7a1a77;border-radius:12px;background:#ff7a1a14;font-size:12.5px;color:#f1e3ff}
+.sv-inc li:before{content:"✓";color:#ffb347;font-weight:800;margin-right:8px}
+.sv-price s{display:inline-block;color:#9d8dbd;font-size:14px;margin-right:8px}
+.sv-price em{display:inline-block;font-style:normal;font-size:11px;font-weight:800;color:#1a0b00;background:linear-gradient(135deg,#6dff8a,#3ddc97);padding:3px 9px;border-radius:20px;vertical-align:2px}
+.sv-price strong{display:block}
+.sv-card:has(.sv-bundle){border-color:#ffb34777;box-shadow:0 18px 44px #000a,0 0 36px #ff7a1a33}
+
+/* ---- hitung mundur promo ---- */
+.sv-promo[hidden]{display:none}
+.sv-count{display:inline-flex;align-items:center;gap:6px;margin-left:12px;vertical-align:middle}
+.sv-count .lbl{font-size:12px;font-weight:700;margin-right:2px;opacity:.85}
+.sv-count i{font-style:normal;display:inline-flex;flex-direction:column;align-items:center;min-width:44px;padding:3px 7px 4px;border-radius:9px;background:#12061f;color:#ffb347;box-shadow:0 0 14px #0006;font-size:9px;font-weight:700;line-height:1.1;letter-spacing:.5px}
+.sv-count i b{font-size:16px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;line-height:1.15}
+@media(max-width:700px){.sv-count{display:flex;justify-content:center;margin:8px 0 0;flex-wrap:wrap}.sv-count .lbl{width:100%;text-align:center}}
+
+/* ---- banner "baru saja membeli" (pembelian nyata) ---- */
+.zs-feed{position:fixed;left:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:12px;max-width:min(340px,calc(100vw - 36px));padding:12px 38px 12px 14px;border-radius:16px;font-size:13px;line-height:1.45;color:#e6dbf8;background:linear-gradient(135deg,#2a1247f2,#14072bf5);border:1px solid #ff7a1a77;box-shadow:0 16px 44px #000c,0 0 28px #ff7a1a40;backdrop-filter:blur(14px);transform:translateX(-120%);opacity:0;transition:transform .5s cubic-bezier(.2,.9,.2,1),opacity .4s}
+.zs-feed.show{transform:none;opacity:1}
+.zs-feed[hidden]{display:none}
+.zs-feed .ic{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;font-size:20px;background:linear-gradient(145deg,#ffb347,#ff5a00);box-shadow:0 6px 16px #ff7a1a66}
+.zs-feed b{color:#fff}.zs-feed strong{color:#ffcf8a}.zs-feed small{display:block;color:#9d8dbd;font-size:11px}
+.zs-feed button{position:absolute;right:8px;top:6px;border:0;background:none;color:#b4a3d1;font-size:18px;cursor:pointer;line-height:1}
+.zs-feed button:hover{color:#fff}
+@media(max-width:700px){.zs-feed{bottom:76px;left:12px}}
+@media(prefers-reduced-motion:reduce){.zs-feed{transition:none}}
+/* tinggi kartu seragam: harga & tombol selalu rata di bawah */
+.sv-card.product-card{display:flex;flex-direction:column}
+.sv-card .sv-body{flex:1;display:flex;flex-direction:column}
+.sv-card .sv-price{margin-top:auto;padding-top:10px}
